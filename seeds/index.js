@@ -1,9 +1,14 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const mongoose = require("mongoose");
 const cities = require("./cities");
 const { places, descriptors } = require("./seedHelpers");
 const Campground = require("../models/campground");
 
-mongoose.connect("mongodb://127.0.0.1:27017/yelp-camp");
+const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/yelp-camp";
+mongoose.connect(dbUrl);
+console.log(dbUrl);
 
 const db = mongoose.connection;
 
@@ -20,7 +25,7 @@ const seedDB = async () => {
     const random1000 = Math.floor(Math.random() * 1000);
     const price = Math.floor(Math.random() * 20) + 10;
     const camp = new Campground({
-      author: "61ca9bfb6e35aa25003f22b6",
+      author: "61cea399aed634ecc3c3f3f3",
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
       description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt nobis optio vel harum, possimus sed sapiente assumenda hic velit culpa, obcaecati minus, alias est earum voluptatum veritatis iusto. Modi, corporis.`,
