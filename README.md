@@ -1,4 +1,3 @@
 # YelpCamp2022
-My first WebApp 
-My first WebApp.
-Build with Node.js, Express, mongodb
+My first WebApp. <br />
+Build with Node.js, Express, mongodb.
